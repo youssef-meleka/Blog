@@ -17,11 +17,13 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // you can replace by: protected $guarded = [] => which is the opposite of '$fillable'
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
+    // if you leave $guarded = [] empty you will disable mass-assignment which will prevent that attack
 
     /**
      * The attributes that should be hidden for serialization.
