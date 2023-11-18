@@ -18,11 +18,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Post routes
-//GET
+//-----------Post routes---------
+//GET - return all
 Route::get("showAllPosts",[PostController::class,'index']);
+
+//GET - Search by ID
 Route::get("showPost/{id}",[PostController::class,'show']);
 
 //POST
 Route::post("createPost",[PostController::class,'store']);
 
+//PUT- Update
+Route::put("updatePost/{id}",[PostController::class,'update']);
+
+//DELETE - delete
+Route::delete("deletePost/{id}",[PostController::class,'destroy']);
+
+//as I am using resources we can use 'apiResource' as follows and only change the stated functions in postman
+Route::apiResource("post",PostController::class);
