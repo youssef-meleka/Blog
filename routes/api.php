@@ -25,17 +25,38 @@ Route::get("showAllPosts",[PostController::class,'index']);
 //GET - return by ID
 Route::get("showPost/{id}",[PostController::class,'show']);
 
-//GET - Search by title
-Route::get("searchPost/{title}",[PostController::class,'search']);
+// //GET - Search by title
+// Route::get("searchPost/{title}",[PostController::class,'search']);
 
-//POST
-Route::post("createPost",[PostController::class,'store']);
+// //POST
+// Route::post("createPost",[PostController::class,'store']);
 
-//PUT- Update
-Route::put("updatePost/{id}",[PostController::class,'update']);
+// //PUT- Update
+// Route::put("updatePost/{id}",[PostController::class,'update']);
 
-//DELETE - delete
-Route::delete("deletePost/{id}",[PostController::class,'destroy']);
+// //DELETE - delete
+// Route::delete("deletePost/{id}",[PostController::class,'destroy']);
 
 //as I am using resources we can use 'apiResource' as follows and only change the stated functions in postman
 Route::apiResource("post",PostController::class);
+
+
+
+
+// AUTHENTICATION - protected routes
+Route::group(['middleware'=>['auth:sanctum']],function() {
+
+    //GET - Search by title
+    Route::get("searchPost/{title}",[PostController::class,'search']);
+
+    //POST
+    Route::post("createPost",[PostController::class,'store']);
+
+    //PUT- Update
+    Route::put("updatePost/{id}",[PostController::class,'update']);
+
+    //DELETE - delete
+    Route::delete("deletePost/{id}",[PostController::class,'destroy']);
+
+
+});
