@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,7 +41,8 @@ Route::get("showPost/{id}",[PostController::class,'show']);
 //as I am using resources we can use 'apiResource' as follows and only change the stated functions in postman
 Route::apiResource("post",PostController::class);
 
-
+//Register
+Route::post("registerNewUser",[AuthController::class,'register']);
 
 
 // AUTHENTICATION - protected routes

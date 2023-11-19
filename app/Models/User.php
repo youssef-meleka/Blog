@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     // you can replace by: protected $guarded = [] => which is the opposite of '$fillable'
     protected $fillable = [
+        'user_id',
         'name',
         'email',
         'password',
