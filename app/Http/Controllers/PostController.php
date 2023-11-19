@@ -28,22 +28,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new Post;
-        $post->category_id = $request->category_id;
-        $post->user_id = $request->user_id;
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->excerpt = $request->excerpt;
-        $post->body = $request->body;
+        return Post::create($request->all());
 
-        $result = $post->save();
-        if($result){
-
-            return ["Result"=>" data has been saved"];
-        }else{
-
-            return ["Result"=>" OPERATION FAILED"];
-        }
     }
 
     /**
@@ -67,24 +53,10 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //you can get only the request as parameter and extract the id out of it
+
         $post = Post::find($id);
-        $post->category_id = $request->category_id;
-        $post->user_id = $request->user_id;
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->excerpt = $request->excerpt;
-        $post->body = $request->body;
-
-        $result = $post->save();
-        if($result){
-
-            return ["Result"=>" data has been update"];
-        }else{
-
-            return ["Result"=>" OPERATION FAILED"];
-        }
-
+        $post->update($request->all());
+        return $post;
 
     }
 
@@ -93,17 +65,16 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        $post = Post::find($id);
-        $result = $post->delete();
-        
-        if($result){
+        return Post::destroy($id);
 
-            return ["Result"=>" post has been deleted"];
-        }else{
+    }
 
-            return ["Result"=>" OPERATION FAILED"];
-        }
-
+     /**
+     * Search the specified resource from storage.
+     */
+    public function search(string $title)
+    {
+        return Post::where('title','like','%'.$title.'%')->get();
 
     }
 }

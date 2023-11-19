@@ -22,8 +22,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //GET - return all
 Route::get("showAllPosts",[PostController::class,'index']);
 
-//GET - Search by ID
+//GET - return by ID
 Route::get("showPost/{id}",[PostController::class,'show']);
+
+//GET - Search by title
+Route::get("searchPost/{title}",[PostController::class,'search']);
 
 //POST
 Route::post("createPost",[PostController::class,'store']);
