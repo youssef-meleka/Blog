@@ -21,7 +21,7 @@ class AuthController extends Controller
             'name' => 'required|string|confirmed'
         ]);
 
-        $user = User::updateOrCreate([
+        $user = User::create([
 
             'name' => $fields['name'],
             'email' => $fields['email'],
