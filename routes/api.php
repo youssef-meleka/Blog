@@ -44,6 +44,9 @@ Route::apiResource("post",PostController::class);
 //Register
 Route::post("registerNewUser",[AuthController::class,'register']);
 
+//Login
+Route::post("loginUser",[AuthController::class,'login']);
+
 
 // AUTHENTICATION - protected routes
 Route::group(['middleware'=>['auth:sanctum']],function() {
@@ -59,6 +62,12 @@ Route::group(['middleware'=>['auth:sanctum']],function() {
 
     //DELETE - delete
     Route::delete("deletePost/{id}",[PostController::class,'destroy']);
+
+    //POST - Logout
+    Route::post("logoutUser",[AuthController::class,'logout']);
+
+
+
 
 
 });
