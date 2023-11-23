@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Comment;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Post::all();
+        return Comment::all();
     }
 
     /**
@@ -20,8 +20,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        return Post::create($request->all());
-
+        return Comment::create($request->all());
     }
 
     /**
@@ -29,7 +28,7 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        return Post::find($id);
+        return Comment::find($id);
     }
 
     /**
@@ -37,11 +36,9 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
-        $post = Post::find($id);
-        $post->update($request->all());
-        return $post;
-
+        $comment = Comment::find($id);
+        $comment->update($request->all());
+        return $comment;
     }
 
     /**
@@ -49,16 +46,6 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        return Post::destroy($id);
-
-    }
-
-     /**
-     * Search the specified resource from storage.
-     */
-    public function search(string $title)
-    {
-        return Post::where('title','like','%'.$title.'%')->get();
-
+        return Comment::destroy($id);
     }
 }
